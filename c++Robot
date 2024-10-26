@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	char instructions;
+	cout<<"Enter a letter: "<<endl;
+	cin>>instructions;
+	switch(instructions)
+	{
+		case 'a':
+			cout<<"MOVE LEFT"<<endl;
+			break;
+		case 'b':
+			cout<<"MOVE RIGHT"<<endl;
+			break;
+		case 'c':
+			cout<<"MOVE FORWARD"<<endl;
+			break;
+		case 'd':
+			cout<<"MOVE BACKWARD"<<endl;
+			break;
+		case 'e':
+			cout<<"JUMP"<<endl;
+			break;
+		case 'f':
+			cout<<"STOP"<<endl;
+			break;
+		default:
+			cout<<"Enter valid input "<<endl;
+	}
+	return 0;
+}
