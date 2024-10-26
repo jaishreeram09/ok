@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+struct{
+    int RN;
+    string Name;
+    string Address;
+}s1,s2;
+void display(int n, string na, string add)
+{ 
+    cout<<"student1: "<<endl;
+    cout<<"Roll No: "<<s1.RN<<endl;
+    cout<<"Name: "<<s1.Name<<endl;
+    cout<<"Address: "<<s1.Address<<endl;
+    cout<<"student2: "<<endl;
+    cout<<"Roll No: "<<s2.RN<<endl;
+    cout<<"Name: "<<s2.Name<<endl;
+    cout<<"Address: "<<s2.Address<<endl;
+}
+int main()
+{
+    cout<<"Enter Roll No of student1: ";
+    cin>>s1.RN;
+    cout<<"Enter Name of  student1: ";
+    cin>>s1.Name;
+    cout<<"Enter Address of student1: ";
+    cin>>s1.Address;
+    cout<<"Enter Roll No of student2: ";
+    cin>>s2.RN;
+    cout<<"Enter Name of  student2: ";
+    cin>>s2.Name;
+    cout<<"Enter Address of student2: ";
+    cin>>s2.Address;
+    display(s1.RN,s1.Name,s1.Address);
+    return 0;
+}
