@@ -1,0 +1,32 @@
+
+#include<iostream>
+using namespace std;
+int sum(int x)
+{
+    return x+10;
+}
+float sum(float x,float y)
+{
+    return x+y;
+}
+string sum(string s1,string s2)
+{
+    return s1+s2;
+}
+int main()
+{
+    int n,result1;
+    cout<<"Enter a number: ";
+    cin>>n;
+    result1 = sum(n);
+    cout<<n<<" +10 = "<<result1<<endl;
+    int n1,n2,result2;
+    cout<<"Enter two numbers: ";
+    cin>>n1>>n2;
+    result2 = sum(n1,n2);
+    cout<<n1<<" + "<<n2<<" = "<<result2<<endl;
+    string name1="SE-",name2="EXTC.",result3;
+    result3 = sum(name1,name2);
+    cout<<name1<<" + "<<name2<<" = "<<result3<<endl;
+    return 0;
+}
