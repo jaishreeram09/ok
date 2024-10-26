@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+class A
+{
+    int x,y;
+    public:
+        void Mul(int x,int y)
+        {
+            cout<<"Multiplication of the entered numbers is: "<<x*y<<endl;
+        }
+};
+class B:public A
+{
+    public:
+    void entery()
+    {
+        int n1,n2;
+        cout<<"Enter first number: ";
+        cin>>n1;
+        cout<<"Enter second number: ";
+        cin>>n2;
+        Mul(n1,n2);
+    }
+};
+int main()
+{
+    B b1;
+    b1.entery(); 
+    return 0;
+}
