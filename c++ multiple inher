@@ -1,0 +1,75 @@
+#include<iostream>
+using namespace std;
+class student
+{
+    private:
+        char name[10];
+        char school[20];
+        char college[20];
+    public:
+        void getdata()
+        {
+            cout<<"Enter name : ";
+            cin>>name;
+            cout<<"Enter school name: ";
+            cin>>school;
+            cout<<"Enter college name: ";
+            cin>>college;
+        }
+        void putdata()
+        {
+            cout<<"Name of the Manager is: "<<name<<endl;
+            cout<<"School Name of the Manager is: "<<school<<endl;
+            cout<<"College Name of the Manager is: "<<college<<endl;
+        }
+};
+class employee
+{
+    private:
+        int age;
+        char company[20];
+    public:
+        void acceptdata()
+        {
+            cout<<"Enter age: ";
+            cin>>age;
+            cout<<"Enter company name: ";
+            cin>>company;
+        }
+        void printdata()
+        {
+            cout<<"Age of the Manager is: "<<age<<endl;
+            cout<<"Company of the Manager is: "<<company<<endl;
+        }
+};
+class manager : private employee , private student
+{   private:
+        int salary;
+        char designation[10];
+    public:
+        void inputdata()
+        {
+            student :: getdata();
+            employee :: acceptdata();
+            cout<<"Enter designation: ";
+            cin>>designation;
+            cout<<"Enter salary: ";
+            cin>>salary;
+        }
+        void showdata()
+        {
+            student :: putdata();
+            employee :: printdata();
+            cout<<"Designation of the Manager is: "<<designation<<endl;
+            cout<<"Salary of the Manager is: "<<salary<<endl;
+        }
+};
+int main()
+{
+    manager m;
+    cout<<"Enter data for Manager: "<<endl;
+    m.inputdata();
+    cout<<"The data of the Manager is: "<<endl;
+    m.showdata();
+    return 0;
+}
