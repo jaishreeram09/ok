@@ -1,0 +1,20 @@
+import numpy as np
+
+def IDFT(Xk):
+    N = len(Xk)
+    print("N = ",N)
+    n = np.arange(N)
+    print("n = ",n)
+    k = np.arange(N)
+    k = np.reshape(k,(N,1))
+    print("k = ",k)
+    W = np.exp(2j * np.pi * n * k/N)
+    W = np.round(W.real) + np.round(W.imag) * 1j
+    print("Conjugate Twiddle Matrix = \n",W)
+    x = (np.dot(W,Xk)) / N
+    return x
+Xk = [10, -2+2j, -2, -2-2j]
+print("X(k) = ",Xk)
+
+x = IDFT(Xk)
+print("IDFT of X(k) = ", np.real(x))
