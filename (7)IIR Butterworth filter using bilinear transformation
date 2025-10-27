@@ -1,0 +1,37 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+alpha_P= 1.93
+alpha_S= 13.97
+
+Domega_P = 0.2 * np.pi
+Domega_S = 0.6 * np.pi
+
+Aomega_P = 2 * np.tan(Domega_P / 2)
+Aomega_S = 2 * np.tan(Domega_S / 2)
+print("Analog Pass band Frequency =", Aomega_P)
+print("Analog Pass band Frequency =", Aomega_S)
+
+N , cut_off = signal.buttord (Aomega_P, Aomega_S, alpha_P, alpha_S, analog = True)
+print("order of a filter =", N)
+print("Cut off frequency =", cut_off)
+
+b , a = signal.butter(N, cut_off, btype = 'lowpass', analog = True, output = 'ba')
+print("Numerator coefficients of H(s) =", b)
+print("Denominator coefficients of H(s) =", a)
+
+num , den = signal.bilinear(b , a)
+
+print("Numerator coefficients of H(z) =", num)
+print("Denominator  coefficients of H(z) =",den)
+
+print("Zeros = ",np.roots(num))
+print("Poles = ",np.roots(den))
+
+w , h = signal.freqz(num , den)
+
+plt.semilogx(w , np.log10(abs(h)))
+plt.grid(which = 'both')
+plt.axvline(100 , color = 'black')
+plt.show()
