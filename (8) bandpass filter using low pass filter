@@ -1,0 +1,47 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+fu = 600
+fl = 200
+fs = 1500
+Ts = 1 / fs
+
+Low_num = [1]
+Low_den = [1 , 1]
+
+Domega_l = (2 * np.pi * fl) / fs
+Domega_u = (2 * np.pi * fu) / fs
+print("Lower cut_off freq(Digital) = ",Domega_l)
+print("Higher cut_off freq(Digital) = ",Domega_u)
+
+Aomega_l = (2 * np.tan(Domega_l / 2)) / Ts
+Aomega_u = (2 * np.tan(Domega_u / 2)) / Ts
+print("Lower cut_off freq (Analog) = ",Aomega_l)
+print("Higher cut_off freq (Analog) = ",Aomega_u)
+
+centre_freq = np.sqrt(Aomega_l * Aomega_u)
+BW = Aomega_u - Aomega_l
+
+B_num , B_den = signal.lp2bp(Low_num , Low_den , wo = centre_freq , bw = BW)
+print("Band Pass Filter Numerator = ",B_num)
+print("Band Pass Filter Denominator = ",B_den)
+
+num , den = signal.bilinear(B_num , B_den)
+print("Digital Band Pass Filter Numerator = ",num)
+print("Digital Band Pass Filter Denominator = ",den)
+
+plt.subplot(1 , 2 , 1)
+w , h = signal.freqs(Low_num , Low_den)
+plt.semilogx(w , 20 * np.log10(abs(h)))
+plt.title("Low Pass Filter freq Response")
+plt.grid(which = 'both')
+plt.axvline(100000 , color = 'Black')
+
+plt.subplot(1 , 2 , 2)
+w , h = signal.freqs(B_num , B_den)
+plt.semilogx(w , 20 * np.log10(abs(h)))
+plt.title("Band Pass Filter freq Response")
+plt.grid(which = 'both')
+
+plt.show()
