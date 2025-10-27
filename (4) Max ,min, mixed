@@ -1,0 +1,44 @@
+#Classification of Phase System
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+numerator = list(map(float,input("Enter numerator coefficients: ").split()))
+denominator = list(map(float,input("Enter denominator coefficients: ").split()))
+
+zeros = np.roots(numerator)
+poles = np.roots(denominator)
+
+print("Zeros = ", zeros)
+print("Poles = ", poles)
+
+inside = np.all(np.abs(zeros) < 1)
+outside = np.all(np.abs(zeros) > 1)
+
+if inside:
+    Phase_Type = "Minimum Phase System"
+elif outside:
+    Phase_Type = "Maximum Phase System"
+else:
+    Phase_Type = "Mixed Phase System"
+
+print(Phase_Type)
+
+plt.scatter(np.real(zeros), np.imag(zeros), marker = 'o', color = 'red', label = 'zeros')
+plt.scatter(np.real(poles), np.imag(poles), marker = 'x', color = 'green', label = 'poles')
+
+plt.axvline(0 , color = 'black', linewidth = 0.5)
+plt.axhline(0 , color = 'black', linewidth = 0.5)
+
+unit_circle = plt.Circle((0,0), 1, linewidth = 1, linestyle = '--', fill = False, color = 'blue')
+plt.gca().add_artist(unit_circle)
+
+plt.xlabel("Real axis")
+plt.ylabel("Imaginary axis")
+plt.xlim(-3,3)
+plt.ylim(-3,3)
+plt.legend()
+plt.title("Pole_Zero_Diagram - {}".format(Phase_Type))
+plt.grid()
+plt.show()
+
