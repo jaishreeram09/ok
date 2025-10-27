@@ -1,0 +1,32 @@
+#Linear Convolution
+
+import numpy as np
+from numpy.fft import fft, ifft
+
+#Input Seq
+x = [1, 2, 3, 1]
+
+#Impulse Response
+h = [1, 1, 1]
+
+L = len(x)
+M = len(h)
+N = L + M -1
+
+k = N - L
+x = np.pad(x, (0,k))
+    
+l = N - M
+h = np.pad(h, (0,l))
+
+#DFT of x(n) & h(n)
+
+Xk = fft(x)
+Hk = fft(h)
+
+Yk = Xk * Hk
+y = ifft(Yk)
+
+print("Input Sequence = ", x)
+print("Impulse Response = ", h)
+print("Output Sequence = ", np.real(y))
