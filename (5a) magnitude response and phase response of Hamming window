@@ -1,0 +1,42 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal.windows import hamming
+M = 50
+hamm_window = hamming(M)
+
+plt.plot(hamm_window,label = "Hamming_window")
+plt.xlabel("samples")
+plt.ylabel("amplitude")
+plt.title("window")
+plt.legend()
+plt.grid()
+plt.show()
+
+Magnitude and Phase response:
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal.windows import hamming
+from scipy.signal import freqz
+
+N = 50
+hamm_window = hamming(N)
+plt.subplot(1, 3, 1)
+plt.plot(hamm_window)
+plt.xlabel("samples")
+plt.ylabel("amplitude")
+plt.grid()
+W,H = freqz(hamm_window,worN = 1024)
+
+plt.subplot(1, 3, 2)
+plt.plot(W / np.pi,np.log10(abs(H)))
+plt.xlabel("normalized freq")
+plt.ylabel("amplitude response")
+plt.grid()
+
+plt.subplot(1, 3, 3)
+plt.plot(W / np.pi,np.angle(H))
+plt.xlabel("normalized freq")
+plt.ylabel("phase angle")
+plt.grid()
+plt.show()
+
