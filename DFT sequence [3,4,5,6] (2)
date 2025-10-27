@@ -1,0 +1,40 @@
+import numpy as np
+from numpy.fft import fft
+import matplotlib.pyplot as plt
+
+x = [3 ,4 ,5 ,6]
+N = len(x)
+
+Xk = fft(x , N)
+print("DFT of x(n) =", Xk)
+
+mag = np.abs(Xk)
+pha = np.angle(Xk)
+print("Magnitude =", mag)
+print("Phase =", pha)
+
+n = np.arange(N)
+k = np.arange(N)
+
+plt.subplot(3 ,1 ,1)
+plt.stem(n , x)
+plt.xlabel("n")
+plt.ylabel("x(n)")
+plt.title("Discrete Time")
+plt.grid()
+
+plt.subplot(3 ,1 ,2)
+plt.stem(k , mag)
+plt.xlabel("k")
+plt.ylabel("|X(k)|")
+plt.title("Magnitude Spectrum")
+plt.grid()
+
+plt.subplot(3 ,1 ,3)
+plt.stem(k , pha)
+plt.xlabel("k")
+plt.ylabel("<X(k)")
+plt.title("Phase Spectrum")
+plt.grid()
+plt.show()
+
