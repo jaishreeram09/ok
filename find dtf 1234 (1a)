@@ -1,0 +1,21 @@
+import numpy as np
+
+def DFT(x):
+    N = len(x)
+    print("N = ",N)
+    n = np.arange(N)
+    print("n = ",n)
+    k = np.arange(N)
+    k = np.reshape(k,(N,1))
+    print("k = ",k)
+    W = np.exp(-2j * np.pi * n * k/N)
+    W = np.round(W.real) + np.round(W.imag) * 1j
+    print("Twiddle Matrix = \n",W)
+    Xk = np.dot(W,x)
+    return Xk
+x = [1 , 2, 3, 4]
+print("x(n) = ",x)
+
+Xk = DFT(x)
+print("DFT of x(n) = ", Xk)
+
