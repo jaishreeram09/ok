@@ -1,0 +1,40 @@
+#Classification of Filters
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import freqz
+
+numerator = list(map(float,input("Enter numerator coefficients: ").split()))
+denominator = list(map(float,input("Enter denominator coefficients: ").split()))
+
+zeros = np.roots(numerator)
+poles = np.roots(denominator)
+
+print("Zeros = ", zeros)
+print("Poles = ", poles)
+
+plt.subplot(1, 2, 1)
+plt.scatter(np.real(zeros), np.imag(zeros), marker = 'o', color = 'red', label = 'zeros')
+plt.scatter(np.real(poles), np.imag(poles), marker = 'x', color = 'green', label = 'poles')
+
+plt.axvline(0 , color = 'black', linewidth = 0.5)
+plt.axhline(0 , color = 'black', linewidth = 0.5)
+
+unit_circle = plt.Circle((0,0), 1, linewidth = 1, linestyle = '--', fill = False, color = 'blue')
+plt.gca().add_artist(unit_circle)
+
+plt.xlabel("Real axis")
+plt.ylabel("Imaginary axis")
+plt.xlim(-2,2)
+plt.ylim(-2,2)
+plt.legend()
+plt.title("Pole_Zero_Diagram - {}")
+plt.grid()
+
+plt.subplot(1, 2, 2)
+w , h = freqz(numerator , denominator)
+plt.plot(w / np.pi, np.abs(h))
+plt.xlabel("Normalised frequency")
+plt.ylabel("Magnitude")
+plt.title("Magnitude Response")
+plt.show()
